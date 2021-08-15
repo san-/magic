@@ -22,9 +22,7 @@ internal class PotterClientTest {
     fun shouldGetHouses(){
         val expectedHouses = listOf(House("1", "nome1"), House("2", "nome2"))
         Mockito.`when`(potterFeignClient.getHouses()).thenReturn(Optional.of(HouseWrapper(expectedHouses)))
-        val response = potterClient.getHouses()
-        assertThat(response).isInstanceOf(Optional::class.java).isNotEmpty
-        val houses = response.orElseThrow().houses
+        val houses = potterClient.getHouses()
         assertThat(houses).asList().hasSize(2)
         houses.forEach{
             assertThat(it.id).isInstanceOf(String::class.java).isBetween("1", "2")
