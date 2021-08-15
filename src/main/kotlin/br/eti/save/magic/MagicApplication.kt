@@ -1,4 +1,4 @@
-package br.save.eti.magic
+package br.eti.save.magic
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

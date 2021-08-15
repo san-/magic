@@ -1,4 +1,4 @@
-package br.save.eti.magic.configuration
+package br.eti.save.magic.configuration
 
 import feign.Logger
 import feign.RequestInterceptor
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean
 class PotterFeignConfig {
 
     @Value(value =  "\${potterApi.apiKey}")
-    lateinit var apiKey: String;
+    lateinit var apiKey: String
 
     @Bean
     fun feignLoggerLevel(): Logger.Level{
@@ -17,7 +17,7 @@ class PotterFeignConfig {
     }
 
     @Bean
-    fun requestTokenBearerInterceptor(): RequestInterceptor? {
+    fun requestTokenBearerInterceptor(): RequestInterceptor {
         return RequestInterceptor {
             it.header("apikey", apiKey)
         }

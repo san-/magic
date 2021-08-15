@@ -1,7 +1,7 @@
-package br.save.eti.magic.resource
+package br.eti.save.magic.resource
 
-import br.save.eti.magic.infrastructure.integration.potter.HouseWrapper
-import br.save.eti.magic.infrastructure.integration.potter.PotterClient
+import br.eti.save.magic.infrastructure.integration.potter.HouseWrapper
+import br.eti.save.magic.infrastructure.integration.potter.PotterClient
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,8 +13,8 @@ class MagicController(@Autowired
 ) {
     @GetMapping("/", produces = ["application/json"])
     fun index(): ResponseEntity<HouseWrapper> {
-        val houses = potterClient.getHouses();
-        return ResponseEntity.ok(houses.get());
+        val houses = potterClient.getHouses()
+        return ResponseEntity.ok(houses.get())
     }
 
 }
