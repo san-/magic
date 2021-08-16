@@ -20,9 +20,8 @@ class CharacterService {
 
     fun create(request: CharacterCreateRequest): CharacterResponse {
         if (potterClient.getHouses().none { it.id == request.house })
-        {
             throw HouseNotFoundException()
-        }
+
         val character = Character(Strings.EMPTY, request.name, request.role, request.school, request.house, request.patronus)
         val saved = characterRepository.save(character)
         return CharacterResponse(saved.id, saved.name, saved.role, saved.school, saved.house, saved.patronus)

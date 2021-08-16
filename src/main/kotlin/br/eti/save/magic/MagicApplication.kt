@@ -1,6 +1,5 @@
 package br.eti.save.magic
 
-import ch.qos.logback.classic.BasicConfigurator
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

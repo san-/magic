@@ -1,6 +1,5 @@
 package br.eti.save.magic.infrastructure.pesistence
 
-import org.hibernate.annotations.GeneratorType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

@@ -17,8 +17,8 @@ class CharacterTest() {
 
 @Test
 fun shouldRetrieveSavedCharacter(){
-    val character = Character(Strings.EMPTY,  "TesteNome","student", "Hogwarts", "1234", "stag" )
-    characterRepository.saveAndFlush(character)
+    var character = Character(Strings.EMPTY,  "TesteNome","student", "Hogwarts", "1234", "stag" )
+    character = characterRepository.saveAndFlush(character)
     val characterFromDB = characterRepository.findById(character.id).orElseThrow()
     assertTrue(character.name == characterFromDB.name)
 }

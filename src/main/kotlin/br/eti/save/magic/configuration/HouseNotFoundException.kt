@@ -1,3 +1,3 @@
 package br.eti.save.magic.configuration
 
-class HouseNotFoundException: RuntimeException()
+class HouseNotFoundException(override val message: String = "House not found"): RuntimeException()

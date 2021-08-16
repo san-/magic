@@ -19,14 +19,19 @@ internal class PotterClientTest {
     lateinit var potterFeignClient: PotterFeignClient
 
     @Test
-    fun shouldGetHouses(){
+    fun shouldGetHouses() {
         val expectedHouses = listOf(House("1", "nome1"), House("2", "nome2"))
         Mockito.`when`(potterFeignClient.getHouses()).thenReturn(Optional.of(HouseWrapper(expectedHouses)))
         val houses = potterClient.getHouses()
         assertThat(houses).asList().hasSize(2)
-        houses.forEach{
+        houses.forEach {
             assertThat(it.id).isInstanceOf(String::class.java).isBetween("1", "2")
         }
+    }
+
+    @Test
+    fun shouldGetEmptyList_whenFailToGetHouses() {
+        //TODO: write this test.
     }
 
 }
