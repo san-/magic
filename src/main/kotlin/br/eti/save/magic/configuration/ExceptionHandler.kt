@@ -19,6 +19,11 @@ class ExceptionHandler {
         return ResponseEntity.notFound().build()
     }
 
+
+    @ExceptionHandler(ThirdPartException::class)
+    protected fun handleThirdPartException(ex: ThirdPartException, request: WebRequest?): ResponseEntity<Any?>? {
+        return ResponseEntity.badRequest().body(ExceptionMessage("${ex.message}: ${ex.cause.javaClass.name}"))
+    }
 }
 
 data class ExceptionMessage(val message: String)

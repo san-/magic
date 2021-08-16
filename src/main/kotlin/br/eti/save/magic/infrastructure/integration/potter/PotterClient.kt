@@ -1,5 +1,6 @@
 package br.eti.save.magic.infrastructure.integration.potter
 
+import br.eti.save.magic.configuration.ThirdPartException
 import lombok.extern.slf4j.Slf4j
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -25,7 +26,7 @@ class PotterClient (@Autowired private val potterFeignClient: PotterFeignClient)
     @Recover
     fun getHouses(ex: RuntimeException): Collection<House>{
         logger.warn("${this.javaClass.name}.getHouses: [${ex.javaClass.name}] ${ex.message}")
-        return Collections.emptyList()
+        throw ex.message?.let { ThirdPartException(it, ex) }!!
     }
 
 }
