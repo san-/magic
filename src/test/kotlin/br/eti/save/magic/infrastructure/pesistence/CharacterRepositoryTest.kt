@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 
 @ExtendWith(MockitoExtension::class)
 @DataJpaTest
-class CharacterTest() {
+class CharacterRepositoryTest() {
 
     @Autowired
     lateinit var characterRepository: CharacterRepository

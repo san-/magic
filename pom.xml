@@ -161,6 +161,42 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.6.8</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>0.14</version>
+					</dependency>
+					<dependency>
+						<groupId>io.github.wmaarts</groupId>
+						<artifactId>pitest-mutation-testing-elements-plugin</artifactId>
+						<version>0.4.0</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<outputFormats>
+						<format>HTML2</format>
+					</outputFormats>
+					<excludedClasses>
+						<param>br.eti.save.application.*</param>
+						<param>br.eti.save.infrastructure.persistence.**.Q*</param>
+						<param>br.eti.save.infrastructure.persistence.**.querydsl.*</param>
+					</excludedClasses>
+					<avoidCallsTo>
+						<avoidCallsTo>java.util.logging</avoidCallsTo>
+						<avoidCallsTo>org.apache.log4j</avoidCallsTo>
+						<avoidCallsTo>org.slf4j</avoidCallsTo>
+						<avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+						<avoidCallsTo>kotlin.jvm.internal.**</avoidCallsTo>
+					</avoidCallsTo>
+					<timestampedReports>false</timestampedReports>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
