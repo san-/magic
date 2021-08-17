@@ -5,25 +5,31 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.validation.constraints.NotNull
 
 @Entity
 class Character(
 
+    @Column(nullable = false, updatable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: String,
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     val name: String,
 
+    @Column(length = 30)
     val role: String,
 
+    @Column(length = 200)
     val school: String,
 
-    val house: String,
+    @Column(nullable = false, length = 50)
+    val house: String?,
 
+    @Column(length = 30)
     val patronus: String,
 
-){
+    ){
 
 }

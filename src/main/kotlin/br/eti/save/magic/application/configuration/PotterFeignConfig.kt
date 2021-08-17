@@ -1,4 +1,4 @@
-package br.eti.save.magic.configuration
+package br.eti.save.magic.application.configuration
 
 import feign.Logger
 import feign.RequestInterceptor

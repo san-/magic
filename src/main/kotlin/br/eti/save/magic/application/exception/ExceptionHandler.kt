@@ -1,5 +1,8 @@
-package br.eti.save.magic.configuration
+package br.eti.save.magic.application.configuration
 
+import br.eti.save.magic.application.exception.CharacterNotFoundException
+import br.eti.save.magic.application.exception.HouseNotFoundException
+import br.eti.save.magic.application.exception.ThirdPartException
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
