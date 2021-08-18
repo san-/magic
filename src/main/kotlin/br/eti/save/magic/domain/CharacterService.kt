@@ -44,4 +44,8 @@ class CharacterService {
         return Mapper.convert(characterRepository.save(merged))
     }
 
+    fun housesCacheInvalidate() {
+        potterClient.cacheInvalidate()
+    }
+
 }
