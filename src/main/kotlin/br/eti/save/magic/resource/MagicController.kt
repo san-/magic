@@ -30,7 +30,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 class MagicController() {
 
     @Autowired
-    lateinit var service: CharacterService
+    private lateinit var service: CharacterService
 
     @PostMapping()
     @CreateCharacterDoc

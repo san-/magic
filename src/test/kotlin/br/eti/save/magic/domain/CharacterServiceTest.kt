@@ -25,13 +25,13 @@ import java.util.*
 class CharacterServiceTest() {
 
     @InjectMocks
-    lateinit var service: CharacterService
+    private lateinit var service: CharacterService
 
     @Mock
-    lateinit var potterClient: PotterClient
+    private lateinit var potterClient: PotterClient
 
     @Mock
-    lateinit var characterRepository: CharacterRepository
+    private lateinit var characterRepository: CharacterRepository
 
     @Test
     fun shouldCreateCharacter() {

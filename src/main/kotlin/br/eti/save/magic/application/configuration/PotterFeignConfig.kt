@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean
 class PotterFeignConfig {
 
     @Value(value =  "\${potterApi.apiKey}")
-    lateinit var apiKey: String
+    private lateinit var apiKey: String
 
     @Bean
     fun feignLoggerLevel(): Logger.Level{

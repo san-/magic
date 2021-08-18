@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 class CharacterRepositoryTest() {
 
     @Autowired
-    lateinit var characterRepository: CharacterRepository
+    private lateinit var characterRepository: CharacterRepository
 
 @Test
 fun shouldRetrieveSavedCharacter(){

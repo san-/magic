@@ -11,7 +11,7 @@ import java.util.*
 internal class PotterFeignClientTest {
 
     @Autowired
-    lateinit var potterFeignClient: PotterFeignClient
+    private lateinit var potterFeignClient: PotterFeignClient
 
 	@Test
 	fun shouldGetHouses() {
