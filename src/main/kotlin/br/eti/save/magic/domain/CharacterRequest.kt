@@ -1,7 +1,6 @@
 package br.eti.save.magic.domain
 
 import io.swagger.annotations.ApiModelProperty
-import io.swagger.annotations.ApiParam
 import lombok.NoArgsConstructor
 
 @NoArgsConstructor

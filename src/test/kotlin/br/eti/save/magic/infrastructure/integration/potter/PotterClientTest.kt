@@ -5,33 +5,34 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.retry.support.RetryTemplate
 import java.util.*
+
 
 @ExtendWith(MockitoExtension::class)
 internal class PotterClientTest {
 
     @InjectMocks
-    lateinit var potterClient: PotterClient
+    private lateinit var potterClient: PotterClient
 
     @Mock
-    lateinit var potterFeignClient: PotterFeignClient
+    private lateinit var potterFeignClient: PotterFeignClient
+
+    @Autowired
+    private lateinit var retryTemplate: RetryTemplate
 
     @Test
     fun shouldGetHouses() {
         val expectedHouses = listOf(House("1", "nome1"), House("2", "nome2"))
-        Mockito.`when`(potterFeignClient.getHouses()).thenReturn(Optional.of(HouseWrapper(expectedHouses)))
+        `when`(potterFeignClient.getHouses()).thenReturn(Optional.of(HouseWrapper(expectedHouses)))
         val houses = potterClient.getHouses()
         assertThat(houses).asList().hasSize(2)
         houses.forEach {
             assertThat(it.id).isInstanceOf(String::class.java).isBetween("1", "2")
         }
-    }
-
-    @Test
-    fun shouldGetEmptyList_whenFailToGetHouses() {
-        //TODO: write this test.
     }
 
 }

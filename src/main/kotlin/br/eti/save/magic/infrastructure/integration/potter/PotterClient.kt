@@ -14,7 +14,6 @@ import org.springframework.retry.annotation.Retryable
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import kotlin.reflect.jvm.internal.impl.load.java.components.JavaPropertyInitializerEvaluator
 
 @Service
 @Slf4j
@@ -27,14 +26,19 @@ class PotterClient(@Autowired private val potterFeignClient: PotterFeignClient) 
     @Retryable(value = [RuntimeException::class], maxAttempts = 3, backoff = Backoff(delay = 10))
     @Cacheable
     fun getHouses(): Collection<House> {
-        logger.info("${this.javaClass.name}.getHouses: trying to get houses list")
-        return potterFeignClient.getHouses().orElseThrow().houses
+        logger.info("${this.javaClass.simpleName}.getHouses: trying to get houses list")
+        try {
+            return potterFeignClient.getHouses().orElseThrow().houses
+        } catch (ex: Exception){
+            logger.error("Unable to access external Houses API")
+            throw ex
+        }
     }
 
     @Recover
     fun getHouses(ex: RuntimeException): Collection<House> {
         throw  ThirdPartException(
-            "Recover getHouses: its not possible to obtain the houses list. [${ex.javaClass.name}: ${ex.message}]",
+            "${this.javaClass.simpleName}.getHouses: its not possible to obtain the houses list. [${ex.javaClass.name}: ${ex.message}]",
             ex
         )
     }
