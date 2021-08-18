@@ -6,10 +6,13 @@ import br.eti.save.magic.domain.CharacterService
 import br.eti.save.magic.resource.doc.CleanCacheDoc
 import br.eti.save.magic.resource.doc.CreateCharacterDoc
 import br.eti.save.magic.resource.doc.DeleteCharacterByIdDoc
+import br.eti.save.magic.resource.doc.FindAllCharactersDoc
 import br.eti.save.magic.resource.doc.FindCharacterByIdDoc
 import br.eti.save.magic.resource.doc.UpdateCharacterDoc
 import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
 @RestController
-@RequestMapping("/magic")
+@RequestMapping("/magics")
 @Api(description = "Magic API endpoints documentation")
 class MagicController() {
 
@@ -45,6 +48,12 @@ class MagicController() {
     fun searchCharacterById(@PathVariable id: String): ResponseEntity<CharacterResponse> {
         val character = service.findById(id)
         return ResponseEntity.ok(character)
+    }
+
+    @GetMapping
+    @FindAllCharactersDoc
+    fun findAll(page: Pageable): ResponseEntity<Page<CharacterResponse>> {
+        return ResponseEntity.ok(service.findAll(page))
     }
 
     @DeleteMapping("/{id}")
